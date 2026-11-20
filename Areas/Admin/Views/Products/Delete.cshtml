@@ -1,0 +1,3 @@
+@model DeleteViewModel<Product>
+@{ ViewData["Title"] = "Xóa sách"; }
+<h1>Xóa sách</h1><section class="panel"><h2 class="h4">@Model.Item.ProductName</h2><p>Sách đã có đơn hàng sẽ chuyển sang ngừng bán để giữ lịch sử mua hàng.</p><p>Bạn có chắc muốn xóa mục này?</p><form method="post" asp-area="Admin" asp-controller="Products" asp-action="Delete"><div asp-validation-summary="All" class="text-danger"></div><button class="btn btn-danger">Xác nhận xóa</button><a class="btn btn-link" asp-area="Admin" asp-controller="Products" asp-action="Index">Quay lại</a></form></section>

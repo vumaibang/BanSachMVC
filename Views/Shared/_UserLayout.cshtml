@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>@ViewData["Title"] - Nhà Sách</title><link rel="icon" href="~/favicon.ico" />
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /><link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /><link rel="stylesheet" href="~/css/mvc.css" asp-append-version="true" /></head>
+<body><header class="bookstore-navbar"><nav class="container store-nav" aria-label="Điều hướng chính">
+<a class="navbar-brand bookstore-logo" asp-area="" asp-controller="Home" asp-action="Index">📚 NHÀ SÁCH</a>
+<button class="btn btn-outline-secondary mobile-menu" type="button" data-store-menu aria-controls="store-menu" aria-expanded="false" aria-label="Mở menu">☰</button>
+<div class="store-links" id="store-menu"><a asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a><a href="/#sach-moi">Sách mới</a>
+@if (User.IsInRole("Admin")) { <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Quản trị</a><form method="post" asp-area="Admin" asp-controller="Auth" asp-action="Logout"><button class="btn btn-outline-secondary btn-sm">Đăng xuất</button></form> }
+else { <a asp-area="" asp-controller="Cart" asp-action="Index">🛒 Giỏ hàng</a>
+@if (User.Identity?.IsAuthenticated == true) { <a asp-area="" asp-controller="Orders" asp-action="Index">Đơn hàng</a><a asp-area="" asp-controller="Profile" asp-action="Index">@User.Identity.Name</a><form method="post" asp-area="" asp-controller="Account" asp-action="Logout"><button class="btn btn-outline-secondary btn-sm">Đăng xuất</button></form> }
+else { <a class="btn btn-login" asp-area="" asp-controller="Account" asp-action="Login">Đăng nhập</a><a asp-area="" asp-controller="Account" asp-action="Register">Đăng ký</a> } }
+</div></nav></header><main class="store-main">@RenderBody()</main>
+<footer class="bookstore-footer"><div class="container"><h4>📚 NHÀ SÁCH</h4><p>Không gian dành cho những người yêu sách và tri thức.</p><p class="mb-0">© @DateTime.Now.Year Nhà Sách · <a asp-area="" asp-controller="Home" asp-action="Privacy">Quyền riêng tư</a> · <a asp-area="Admin" asp-controller="Auth" asp-action="Login">Quản trị viên</a></p></div></footer>
+<script src="~/lib/jquery/dist/jquery.min.js"></script><script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script><script src="~/js/site.js" asp-append-version="true"></script>@await RenderSectionAsync("Scripts", required: false)</body></html>

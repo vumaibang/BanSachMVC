@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="BanSachMVC.csproj" />
+  <Project Path="BanSachMVC.Tests/BanSachMVC.Tests.csproj" />
+</Solution>

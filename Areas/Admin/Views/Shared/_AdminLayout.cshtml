@@ -1,0 +1,34 @@
+@{ var current = ViewContext.RouteData.Values["controller"]?.ToString() ?? ""; }
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - Quản trị Nhà Sách</title><link rel="icon" href="~/favicon.ico" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/mvc.css" asp-append-version="true" />
+</head>
+<body>
+<div class="admin-shell">
+    <aside class="admin-sidebar">
+        <a class="sidebar-brand" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">📚 BOOK STORE</a>
+        <nav class="sidebar-menu" aria-label="Quản trị">
+        @foreach (var item in new[] { ("Dashboard", "🏠 Tổng quan"), ("Products", "📚 Quản lý sản phẩm"), ("Categories", "📂 Quản lý danh mục"), ("Orders", "🛒 Quản lý đơn hàng"), ("Customers", "👥 Quản lý khách hàng"), ("Accounts", "👤 Quản lý tài khoản") })
+        {
+            <a asp-area="Admin" asp-controller="@item.Item1" asp-action="Index" class="@(current == item.Item1 ? "active" : "")">@item.Item2</a>
+        }
+        <a asp-area="" asp-controller="Home" asp-action="Index">↗ Xem cửa hàng</a>
+        </nav>
+    </aside>
+    <div class="admin-main">
+        <header class="admin-header"><strong>HỆ THỐNG QUẢN LÝ BÁN SÁCH</strong><span>@User.Identity?.Name</span>
+            <form method="post" asp-area="Admin" asp-controller="Auth" asp-action="Logout"><button class="btn btn-outline-secondary btn-sm">Đăng xuất</button></form>
+        </header>
+        <main class="admin-content"><partial name="_Feedback" />@RenderBody()</main>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body></html>

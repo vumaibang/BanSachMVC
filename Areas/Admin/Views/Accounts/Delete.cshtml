@@ -1,0 +1,3 @@
+@model DeleteViewModel<Account>
+@{ ViewData["Title"] = "Xóa tài khoản"; }
+<h1>Xóa tài khoản</h1><section class="panel"><h2 class="h4">@Model.Item.Username</h2><p>Không thể xóa tài khoản đang đăng nhập, Admin cuối cùng hoặc tài khoản đã liên kết với khách hàng.</p><p>Bạn có chắc muốn xóa mục này?</p><form method="post" asp-area="Admin" asp-controller="Accounts" asp-action="Delete"><div asp-validation-summary="All" class="text-danger"></div><button class="btn btn-danger">Xác nhận xóa</button><a class="btn btn-link" asp-area="Admin" asp-controller="Accounts" asp-action="Index">Quay lại</a></form></section>

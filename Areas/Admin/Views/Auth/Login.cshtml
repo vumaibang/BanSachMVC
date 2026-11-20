@@ -1,0 +1,8 @@
+@model LoginViewModel
+@{ Layout = "/Views/Shared/_UserLayout.cshtml"; ViewData["Title"] = "Đăng nhập quản trị"; }
+<div class="container page-space"><section class="auth-card"><p class="section-subtitle">NHÀ SÁCH</p><h1>Đăng nhập quản trị</h1><p class="text-muted">Dành cho tài khoản quản trị nhà sách.</p><partial name="_Feedback" />
+<form method="post" data-submit-once asp-area="Admin" asp-controller="Auth" asp-action="Login"><div asp-validation-summary="All" class="text-danger"></div><input asp-for="ReturnUrl" type="hidden" />
+<label asp-for="Username" class="form-label">Tên đăng nhập</label><input asp-for="Username" class="form-control mb-3" autocomplete="username" />
+<label asp-for="Password" class="form-label">Mật khẩu</label><input asp-for="Password" type="password" class="form-control mb-4" autocomplete="current-password" />
+<button class="btn btn-login w-100" type="submit">Đăng nhập</button></form><a class="d-inline-block mt-3" asp-area="" asp-controller="Home" asp-action="Index">← Về cửa hàng</a></section></div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }
